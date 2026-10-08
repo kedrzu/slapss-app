@@ -181,12 +181,13 @@ final class AlertScheduler: ObservableObject {
         // silently slipped (or was skipped entirely) when the system put us
         // to sleep while the popover was closed — that was the dominant
         // cause of "the alert didn't fire while the app was running."
-        // `.idleSystemSleepDisabled` would also prevent the Mac from sleeping
-        // on its own; we deliberately don't pass that flag — we just want
-        // App Nap off, not laptop-lid-respect off.
+        // `.userInitiated` alone already includes `.idleSystemSleepDisabled`,
+        // which would keep the Mac from ever sleeping on its own. We only
+        // want App Nap off, so use the variant that leaves idle sleep alone;
+        // the wake observer below catches up on anything missed in sleep.
         if activityToken == nil {
             activityToken = ProcessInfo.processInfo.beginActivity(
-                options: [.userInitiated],
+                options: [.userInitiatedAllowingIdleSystemSleep],
                 reason: "Slapss schedules meeting alerts that must fire on time."
             )
         }

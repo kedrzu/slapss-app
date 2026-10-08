@@ -5,6 +5,10 @@ All notable user-facing changes to Slapss.
 This file is the source of truth for release notes. The public web changelog and
 GitHub Releases are generated from it.
 
+## Unreleased
+
+- Fixed: Slapss kept your Mac from going to sleep on its own while it was running. Your Mac now sleeps on its normal schedule again, and when it wakes up, Slapss still shows any meeting that started while it was asleep.
+
 ## v2.2.1 — September 25, 2026
 
 - The **Show alert** setting is now a menu instead of a slider: at meeting start, 10 or 30 seconds before, or 1, 2, 5, 10 or 15 minutes before. **Custom…** covers anything in between, from 5 seconds to 15 minutes. If you had picked a time that isn't in the menu, it stays exactly as it was and shows under Custom.
